@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class IndexController {
 
-    @GetMapping("/hello")
-    public String print_hello(){
+    @GetMapping("/")
+    public String index(){
         return "index";
     }
 }
