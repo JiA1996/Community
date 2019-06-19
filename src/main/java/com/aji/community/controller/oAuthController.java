@@ -2,12 +2,16 @@ package com.aji.community.controller;
 
 import com.aji.community.dataTransferObject.accessTokenDTO;
 import com.aji.community.dataTransferObject.user_Github;
+import com.aji.community.model.user;
 import com.aji.community.thirdParty.InvokeGithubAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 @Controller
 public class oAuthController {
@@ -26,7 +30,8 @@ public class oAuthController {
 
     @GetMapping("/github_redirect")
     public String github_redirect(@RequestParam(name = "code") String code,
-                           @RequestParam(name = "state") String state){
+                                  @RequestParam(name = "state") String state,
+                                  HttpServletRequest request){
 
         accessTokenDTO accessTokenDTO = new accessTokenDTO();
         accessTokenDTO.setClient_id(client_id);
@@ -36,8 +41,21 @@ public class oAuthController {
         accessTokenDTO.setState(state);
 
         String accessToken = githubAPI.getAccessToken(accessTokenDTO);
-        user_Github user = githubAPI.getUser(accessToken);
+        user_Github user_github = githubAPI.getUser(accessToken);
 
-        return "index";
+        if (user_github != null && user_github.getId() != null) {
+            request.getSession().setAttribute("user_github", user_github);
+            user user = new user();
+            String token = UUID.randomUUID().toString();
+            user.setToken(token);
+            user.setUsername(user_github.getName());
+            user.setUserID(String.valueOf(user_github.getId()));
+            //response.addCookie(new Cookie("token", token));
+            return "redirect:/";
+        } else {
+            //fail to login
+            //retry
+            return "redirect:/";
+        }
     }
 }

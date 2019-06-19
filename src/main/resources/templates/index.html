@@ -49,11 +49,18 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
 
+            <!-- User bar -->
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://github.com/login/oauth/authorize?client_id=7a638c95d9ecfed5ee97&redirect_uri=http://localhost:8726/github_redirect&scope=user&state=rioka">Login</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        我的头像 <span class="caret"></span></a>
+
+                <!--<if there is no user session, Login>-->
+                <li th:if="${session.user_github == null}">
+                    <a href="https://github.com/login/oauth/authorize?client_id=7a638c95d9ecfed5ee97&redirect_uri=http://localhost:8726/github_redirect&scope=user&state=rioka">Login</a>
+                </li>
+
+                <!--<if exist user session, show user drop down bar>-->
+                <li class="dropdown" th:if="${session.user_github != null}">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false" th:text="${session.user_github.getName()}"><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
