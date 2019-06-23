@@ -14,7 +14,7 @@ public class user {
     private String username;
     private String token;
     private String gender;
-    private Long gmt_joindate;
+    private long gmt_joindate;
 
     public Integer getId() {
         return id;
@@ -56,11 +56,11 @@ public class user {
         this.gender = gender;
     }
 
-    public Long getGmt_joindate() {
+    public long getGmt_joindate() {
         return gmt_joindate;
     }
 
-    public void setGmt_joindate(Long gmt_joindate) {
+    public void setGmt_joindate(long gmt_joindate) {
         this.gmt_joindate = gmt_joindate;
     }
 

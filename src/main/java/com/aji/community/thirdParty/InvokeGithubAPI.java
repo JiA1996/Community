@@ -29,7 +29,8 @@ public class InvokeGithubAPI {
         }
     }
 
-    //Get
+    //send access token to github to get a json file containing user information.
+    //Then get user object by parsing json.
     public user_Github getUser(String accessToken) {
 
         OkHttpClient client = new OkHttpClient();
