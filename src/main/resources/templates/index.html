@@ -57,6 +57,10 @@
                     <a href="https://github.com/login/oauth/authorize?client_id=7a638c95d9ecfed5ee97&redirect_uri=http://localhost:8726/github_redirect&scope=user&state=rioka">Login</a>
                 </li>
 
+                <li th:if="${session.user != null}">
+                    <a href="/newpost">New post</a>
+                </li>
+
                 <!--<if exist user session, show user drop down bar>-->
                 <li class="dropdown" th:if="${session.user != null}">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

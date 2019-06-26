@@ -81,7 +81,7 @@
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                 <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> send a new post </h2>
                 <hr>
-                <form action="" method="post">
+                <form action="/newpost" method="post">
 
                     <div class="form-group">
                         <label for="title">Title for your post: </label>
@@ -91,10 +91,15 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Main body:</label>
-                        <textarea name="description" id="description" class="form-control"
+                        <label for="body">Main body:</label>
+                        <textarea name="body" id="body" class="form-control"
                                   cols="30"
                                   rows="10"></textarea>
+                    </div>
+
+                    <div class="alert alert-danger col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                         th:text="${error}"
+                         th:if="${error != null}">
                     </div>
 
                     <button type="submit" class="btn btn-primary">
