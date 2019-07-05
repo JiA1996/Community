@@ -1,18 +1,18 @@
-package com.aji.community.model;
+package com.aji.community.dataTransferObject;
 
+import com.aji.community.model.user;
 import lombok.Data;
 
 /**
  * \* Created with IntelliJ IDEA.
  * \* User: Aji
- * \* Date: 2019/6/26
- * \* Time: 20:23
- * \* Description: model for a post
- * \
+ * \* Date: 2019/7/5
+ * \* Time: 17:53
+ * \* Description: post DTO
+ *
  */
-
 @Data
-public class post {
+public class postDTO {
     private Integer id;
     private String userID;
     private String username;
@@ -22,5 +22,6 @@ public class post {
     private Integer num_view;
     private Integer num_like;
     private long gmt_create;
-    private long gmt_lastmodified;
+    private long gmt_lastModified;
+    private user userObject;
 }

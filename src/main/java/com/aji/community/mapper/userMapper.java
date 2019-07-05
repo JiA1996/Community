@@ -23,4 +23,7 @@ public interface userMapper {
 
     @Select("SELECT id, userID, username, token, gender, gmt_joindate FROM USER WHERE token = #{token}")
     user getUserByToken(@Param("token") String token);
+
+    @Select("SELECT * FROM USER WHERE id = #{id}")
+    user getUserByID(@Param("id") String userID);
 }
