@@ -24,4 +24,8 @@ public class postDTO {
     private long gmt_create;
     private long gmt_lastModified;
     private user userObject;
+
+    public void setUserObject(user userObject) {
+        this.userObject = userObject;
+    }
 }

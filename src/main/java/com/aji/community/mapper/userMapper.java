@@ -11,19 +11,19 @@ import org.apache.ibatis.annotations.Select;
  * \* User: Aji
  * \* Date: 2019/6/19
  * \* Time: 17:39
- * \* Description:
+ * \* Description:mapper for user object
  * \
  */
 
 @Mapper
 public interface userMapper {
 
-    @Insert("INSERT INTO USER(userID, username, token, gender, gmt_joindate) VALUES(#{userID}, #{username}, #{token}, #{gender}, #{gmt_joindate})")
+    @Insert("INSERT INTO USER(userID, username, token, gender, gmt_joindate, avatarUrl) VALUES(#{userID}, #{username}, #{token}, #{gender}, #{gmt_joindate}, #{avatarUrl})")
     void insertUser(user u);
 
     @Select("SELECT id, userID, username, token, gender, gmt_joindate FROM USER WHERE token = #{token}")
     user getUserByToken(@Param("token") String token);
 
-    @Select("SELECT * FROM USER WHERE id = #{id}")
-    user getUserByID(@Param("id") String userID);
+    @Select("SELECT * FROM USER WHERE userID = #{userID}")
+    user getUserByID(@Param("userID") String userID);
 }

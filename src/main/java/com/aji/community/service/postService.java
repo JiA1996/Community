@@ -38,10 +38,21 @@ public class postService {
         for (post p : posts){
             user u = userMapper.getUserByID(p.getUserID());
             postDTO pDTO = new postDTO();
-            pDTO.setUserObject(u);
             BeanUtils.copyProperties(p, pDTO);
+            pDTO.setUserObject(u);
             postDTOList.add(pDTO);
         }
         return postDTOList;
     }
+
+    public postDTO getPostByID(Integer id) {
+        post p = postMapper.getPostByID(id);
+        user u = userMapper.getUserByID(p.getUserID());
+        postDTO pDTO = new postDTO();
+
+        BeanUtils.copyProperties(p, pDTO);
+        pDTO.setUserObject(u);
+        return pDTO;
+    }
+
 }

@@ -19,7 +19,7 @@
 <div class="container-fluid main">
     <div class="row">
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span> 发现</h2>
+            <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Posts </h3>
             <hr>
 
             <div class="media" th:each="post : ${posts}">
@@ -28,15 +28,13 @@
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded"
-                             src= "https://i.bmp.ovh/imgs/2019/07/a32e7ff0b5c539a2.jpg"
-                             style="height: 38px"
-                        >
+                             th:src= "${post.userObject.getAvatarUrl()}">
                     </a>
                 </div>
 
                 <div class="media-body">
                     <h4 class="media-heading">
-                        <a th:href="@{'/question/'}" th:text="${post.title}"></a></h4>
+                        <a th:href="@{'/post/'+ ${post.id}}" th:text="${post.title}"></a></h4>
                     <span th:text="${post.body}"></span> <br>
                     <span class="text-desc"><span th:text="${post.num_comment}"></span> comments • <span
                             th:text="${post.num_view}"></span> views • <span
@@ -51,6 +49,7 @@
             <h2>custom user icon</h2>
             <h2>custom user sign up</h2>
             <h2>pagination</h2>
+            <h2>title for each page</h2>
         </div>
     </div>
 </div>

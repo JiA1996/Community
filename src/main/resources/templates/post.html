@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> post </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+
+
+</head>
+<body>
+
+<!-- navigation bar -->
+<div th:insert="~{navigationBar :: navBar}"></div>
+
+<div class="container-fluid main profile">
+    <div class="row">
+
+        <!--Left side-->
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+
+            <!--main post-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4 class="post-title"><span th:text="${post.title}"></span></h4>
+                <span class="text-desc">
+                Author：<span th:text="${post.userObject.username}"></span> |
+                created at：<span th:text="${#dates.format(post.gmt_create,'yyyy-MM-dd HH:mm')}"></span> |
+                views： <span th:text="${post.num_view}"></span >|
+                likes: <span th:text="${post.num_like}"></span >
+            </span>
+                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <!--内容-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
+                    <label>
+                        <textarea style="display:none;" th:text="${post.body}"></textarea>
+                    </label>
+                </div>
+
+                <script type="text/javascript">
+                    $(function () {
+                        editormd.markdownToHTML("question-view", {});
+                    });
+                </script>
+
+                <!--edit-->
+                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <a th:href="@{'/newpost/'+${post.getId()}}" class="community-menu"
+                       th:if="${session.user != null && session.user.id == post.getUserID()}">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>
+                    </a>
+                </div>
+                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+            </div>
+
+
+
+            <!--reply bar-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>
+                    Reply
+                </h4>
+                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="comment_section">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object img-rounded"
+                                     th:src="${session.user != null ? session.user.avatarUrl : '/images/default-avatar.png'}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading">
+                                <span th:text="${session.user != null ? session.user.getUsername() : '匿名用户'}"></span>
+                            </h5>
+                        </div>
+                    </div>
+                    <input type="hidden" id="question_id" th:value="${post.getId()}">
+                    <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
+                    <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!--right bar-->
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>Author</h4>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object img-rounded"
+                                 th:src="${post.userObject.getAvatarUrl()}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading">
+                            <span th:text="${post.getUsername()}"></span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+
+            <!--wechat-->
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>Aji's wechat</h4>
+                <img class="img-thumbnail question-wechat" src="/images/wechat.png">
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -19,4 +19,5 @@ public class user {
     private String token;
     private String gender;
     private long gmt_joindate;
+    private String avatarUrl;
 }

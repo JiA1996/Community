@@ -60,6 +60,7 @@ public class oAuthController {
             u.setUsername(user_github.getName());
             u.setUserID(String.valueOf(user_github.getId()));
             u.setGmt_joindate(System.currentTimeMillis());
+            u.setAvatarUrl(user_github.getAvatarUrl());
             userMapper.insertUser(u);
 
             //save cookie
