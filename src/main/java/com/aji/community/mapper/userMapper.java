@@ -1,10 +1,7 @@
 package com.aji.community.mapper;
 
 import com.aji.community.model.user;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 /**
  * \* Created with IntelliJ IDEA.
@@ -26,4 +23,7 @@ public interface userMapper {
 
     @Select("SELECT * FROM USER WHERE userID = #{userID}")
     user getUserByID(@Param("userID") String userID);
+
+    @Update("UPDATE USER SET username = #{username}, token = #{token}, avatarUrl = #{avatarUrl} WHERE userID = #{userID}")
+    void updateByID(user oneUser);
 }

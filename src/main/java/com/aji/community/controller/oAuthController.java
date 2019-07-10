@@ -4,6 +4,7 @@ import com.aji.community.dataTransferObject.accessTokenDTO;
 import com.aji.community.dataTransferObject.user_Github;
 import com.aji.community.mapper.userMapper;
 import com.aji.community.model.user;
+import com.aji.community.service.userService;
 import com.aji.community.thirdParty.InvokeGithubAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +33,7 @@ public class oAuthController {
     private String redirect_uri;
 
     @Autowired
-    private userMapper userMapper;
+    private userService service;
 
     @GetMapping("/github_redirect")
     public String github_redirect(@RequestParam(name = "code") String code,
@@ -59,9 +60,8 @@ public class oAuthController {
             u.setToken(token);
             u.setUsername(user_github.getName());
             u.setUserID(String.valueOf(user_github.getId()));
-            u.setGmt_joindate(System.currentTimeMillis());
             u.setAvatarUrl(user_github.getAvatarUrl());
-            userMapper.insertUser(u);
+            service.whenUserLogin(u);//insert or update
 
             //save cookie
             response.addCookie(new Cookie("token", token));
@@ -71,5 +71,15 @@ public class oAuthController {
             //retry
             return "redirect:/";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response) {
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 }
