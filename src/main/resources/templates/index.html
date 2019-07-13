@@ -35,7 +35,7 @@
                 <div class="media-body">
                     <h4 class="media-heading">
                         <a th:href="@{'/post/'+ ${post.id}}" th:text="${post.title}"></a></h4>
-                    <span th:text="${post.body}"></span> <br>
+                    <span th:text="${post.body.length() > 100 ? post.body.substring(0,100)+'...' : post.body}"></span> <br>
                     <span class="text-desc"><span th:text="${post.num_comment}"></span> comments • <span
                             th:text="${post.num_view}"></span> views • <span
                             th:text="${#dates.format(post.gmt_create,'yyyy-MM-dd HH:mm')}"></span></span>

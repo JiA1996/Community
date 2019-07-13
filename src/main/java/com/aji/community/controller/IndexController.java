@@ -21,6 +21,7 @@ public class IndexController {
                         Model model){
 
         List<postDTO> posts = postService.getPostList();
+
         model.addAttribute("posts", posts);
 
         return "index";
