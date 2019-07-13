@@ -24,9 +24,11 @@
         <div class="row">
 
             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> send a new post </h2>
+                <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> edit post </h2>
                 <hr>
-                <form action="/newpost" method="post">
+                <form action="/editpost" method="post">
+
+                    <input type="hidden" name="postID" th:value="${postID}">
 
                     <!-- title -->
                     <div class="form-group">

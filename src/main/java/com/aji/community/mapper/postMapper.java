@@ -27,4 +27,7 @@ public interface postMapper {
 
     @Update("UPDATE POST SET NUM_VIEW = #{num_view} WHERE id = #{id}")
     void updateViews(post p);
+
+    @Update("UPDATE POST SET title = #{title}, body = #{body} WHERE id = #{id}")
+    void updatePost(post p);
 }
