@@ -55,4 +55,10 @@ public class postService {
         return pDTO;
     }
 
+    public void increaseViews(Integer id) {
+        post p = new post();
+        p.setId(id);
+        p.setNum_view(postMapper.getPostByID(id).getNum_view() + 1);
+        postMapper.updateViews(p);
+    }
 }

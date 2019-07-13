@@ -24,8 +24,8 @@ public class viewPostController {
 
     @GetMapping("/post/{id}")
     public String post(@PathVariable(name = "id") Integer id, Model model) {
+        pService.increaseViews(id);
         postDTO pDTO = pService.getPostByID(id);
-
         model.addAttribute("post", pDTO);
         //model.addAttribute("comments", replies);
         return "post";

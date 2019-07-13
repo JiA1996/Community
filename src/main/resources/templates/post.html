@@ -31,8 +31,7 @@
                 <span class="text-desc">
                 Author：<span th:text="${post.userObject.username}"></span> |
                 created at：<span th:text="${#dates.format(post.gmt_create,'yyyy-MM-dd HH:mm')}"></span> |
-                views： <span th:text="${post.num_view}"></span >|
-                likes: <span th:text="${post.num_like}"></span >
+                views： <span th:text="${post.num_view}"></span>
             </span>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -110,12 +109,7 @@
                 </div>
             </div>
 
-            <!--wechat-->
-            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4>Aji's wechat</h4>
-                <img class="img-thumbnail question-wechat" src="/images/wechat.png">
-            </div>
+
 
         </div>
     </div>
