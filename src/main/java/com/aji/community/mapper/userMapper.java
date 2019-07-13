@@ -18,7 +18,7 @@ public interface userMapper {
     @Insert("INSERT INTO USER(userID, username, token, gender, gmt_joindate, avatarUrl) VALUES(#{userID}, #{username}, #{token}, #{gender}, #{gmt_joindate}, #{avatarUrl})")
     void insertUser(user u);
 
-    @Select("SELECT id, userID, username, token, gender, gmt_joindate FROM USER WHERE token = #{token}")
+    @Select("SELECT * FROM USER WHERE token = #{token}")
     user getUserByToken(@Param("token") String token);
 
     @Select("SELECT * FROM USER WHERE userID = #{userID}")

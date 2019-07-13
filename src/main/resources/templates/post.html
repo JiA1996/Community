@@ -1,13 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title> post </title>
+    <title th:text = "${post.title}"></title>>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="/css/community.css">
+    <link rel="stylesheet" href="/css/newpost.css">
+    <link rel="stylesheet" href="/css/editormd.preview.min.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
+
 
 
 </head>
@@ -33,8 +38,8 @@
             </span>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                <!--内容-->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
+                <!--body-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="body-view">
                     <label>
                         <textarea style="display:none;" th:text="${post.body}"></textarea>
                     </label>
@@ -42,7 +47,7 @@
 
                 <script type="text/javascript">
                     $(function () {
-                        editormd.markdownToHTML("question-view", {});
+                        editormd.markdownToHTML("body-view", {});
                     });
                 </script>
 
@@ -50,8 +55,8 @@
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <a th:href="@{'/newpost/'+${post.getId()}}" class="community-menu"
-                       th:if="${session.user != null && session.user.id == post.getUserID()}">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">编辑</span>
+                       th:if="${session.user != null && session.user.getUserID() == post.getUserID()}">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">edit</span>
                     </a>
                 </div>
                 <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -71,16 +76,16 @@
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object img-rounded"
-                                     th:src="${session.user != null ? session.user.avatarUrl : '/images/default-avatar.png'}">
+                                     th:src="${session.user != null ? session.user.getAvatarUrl() : '/images/defav.jpg'}">
                             </a>
                         </div>
                         <div class="media-body">
                             <h5 class="media-heading">
-                                <span th:text="${session.user != null ? session.user.getUsername() : '匿名用户'}"></span>
+                                <span th:text="${session.user != null ? session.user.getUsername() : 'unknown user'}"></span>
                             </h5>
                         </div>
                     </div>
-                    <input type="hidden" id="question_id" th:value="${post.getId()}">
+                    <input type="hidden" id="post_id" th:value="${post.getId()}">
                     <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
                     <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
                 </div>
