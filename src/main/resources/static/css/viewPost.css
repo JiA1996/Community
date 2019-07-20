@@ -1,0 +1,24 @@
+.media-body {
+    padding-top: 10px;
+}
+
+.btn-comment {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.comment-area {
+    margin: 10px 0;
+}
+
+.media{
+    margin-bottom: 20px;
+}
+
+.media-heading{
+    margin: 5px;
+}
+
+.media-body{
+    padding: 0;
+}

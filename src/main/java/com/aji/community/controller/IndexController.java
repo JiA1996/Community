@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -17,8 +16,7 @@ public class IndexController {
     private postService postService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request,
-                        Model model){
+    public String index(Model model){
 
         List<postDTO> posts = postService.getPostList();
 

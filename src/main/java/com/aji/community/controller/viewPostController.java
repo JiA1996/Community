@@ -34,7 +34,6 @@ public class viewPostController {
         pService.increaseViews(postID);
         postDTO pDTO = pService.getPostByID(postID);
         List<replyDTO> replies = rService.getReplyListByPostId(postID);
-        System.out.println(replies);
         model.addAttribute("post", pDTO);
         model.addAttribute("repliesss", replies);
         return "post";

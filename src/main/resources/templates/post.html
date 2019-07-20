@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/newpost.css">
     <link rel="stylesheet" href="/css/editormd.preview.min.css">
+    <link rel="stylesheet" href="/css/viewPost.css">
     <script src="/js/jquery-3.4.1.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
     <script src="/js/editormd.min.js" type="application/javascript"></script>
@@ -74,11 +75,12 @@
                                 <img class="media-object img-rounded"
                                      th:src="${reply.getUserObject().getAvatarUrl()}">
                             </a>
+                            <h5 class="media-heading">
+                                <span th:text=" ${reply.getUserObject().getUsername()}"></span>
+                            </h5>
                         </div>
                         <div class="media-body" th:id="${'comment-body-'+reply.getReplyID()}">
-                            <h5 class="media-heading">
-                                <span th:text="${reply.getUserObject().getUsername()}"></span>
-                            </h5>
+
                             <div th:text="${reply.getContent()}"></div>
                             <div class="menu">
                                 <span class="glyphicon glyphicon-thumbs-up icon"></span>
@@ -111,7 +113,7 @@
                         </div>
                     </div>
                     <input type="hidden" id="post_id" th:value="${post.getId()}">
-                    <textarea class="form-control comment" rows="6" id="reply_content"></textarea>
+                    <textarea class="form-control comment-area" rows="6" id="reply_content"></textarea>
                     <button type="button" class="btn btn-success btn-comment" onclick="post()">Reply</button>
                 </div>
             </div>
