@@ -12,6 +12,7 @@
     <script src="/js/editormd.min.js" type="application/javascript"></script>
     <script src="/js/lib/marked.min.js"></script>
     <script src="/js/lib/prettify.min.js"></script>
+    <script src="/js/post.js"></script>
 </head>
 
 <body>
@@ -60,7 +61,34 @@
 
             </div>
 
-
+            <!--reply list-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4>
+                    <span th:text="${post.getNum_comment()}"></span> replies
+                </h4>
+                <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comment-sp">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 comments" th:each="reply : ${repliesss}">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img class="media-object img-rounded"
+                                     th:src="${reply.getUserObject().getAvatarUrl()}">
+                            </a>
+                        </div>
+                        <div class="media-body" th:id="${'comment-body-'+reply.getReplyID()}">
+                            <h5 class="media-heading">
+                                <span th:text="${reply.getUserObject().getUsername()}"></span>
+                            </h5>
+                            <div th:text="${reply.getContent()}"></div>
+                            <div class="menu">
+                                <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                <span class="pull-right"
+                                      th:text="${#dates.format(reply.getGmtCreate(),'yyyy-MM-dd')}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!--reply bar-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -83,8 +111,8 @@
                         </div>
                     </div>
                     <input type="hidden" id="post_id" th:value="${post.getId()}">
-                    <textarea class="form-control comment" rows="6" id="comment_content"></textarea>
-                    <button type="button" class="btn btn-success btn-comment" onclick="post()">回复</button>
+                    <textarea class="form-control comment" rows="6" id="reply_content"></textarea>
+                    <button type="button" class="btn btn-success btn-comment" onclick="post()">Reply</button>
                 </div>
             </div>
 

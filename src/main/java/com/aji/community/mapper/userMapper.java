@@ -3,6 +3,8 @@ package com.aji.community.mapper;
 import com.aji.community.model.user;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 /**
  * \* Created with IntelliJ IDEA.
  * \* User: Aji
@@ -26,4 +28,17 @@ public interface userMapper {
 
     @Update("UPDATE USER SET username = #{username}, token = #{token}, avatarUrl = #{avatarUrl} WHERE userID = #{userID}")
     void updateByID(user oneUser);
+
+    @Select({
+            "<script>",
+            "select",
+            "*",
+            "from user",
+            "where userID in",
+            "<foreach collection='userIDs' item='id' open='(' separator=',' close=')'>",
+            "#{id}",
+            "</foreach>",
+            "</script>"
+    })
+    List<user> selectUserListByUserIDList(@Param("userIDs") List<String> userIDs);
 }
