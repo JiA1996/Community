@@ -18,12 +18,11 @@ function ajaxx(postId, content) {
             "postId": postId,
             "content": content
         }),
-        success: function (response) {
-            if (response.code == 200) {
-                window.location.reload();
-            } else {
-                    alert(response.message);
-            }
+        success: function (){
+            window.location.reload(true);
+        },
+        error: function(){
+            window.location.reload(true);
         },
         dataType: "json"
     });
