@@ -1,0 +1,11 @@
+2019-07-22 19:14:33.119  INFO 7140 --- [main] com.aji.community.CommunityApplication   : Starting CommunityApplication on LAPTOP-25JI0S6T with PID 7140 (P:\projects\community\target\classes started by Aji in P:\projects\community)
+2019-07-22 19:14:33.122  INFO 7140 --- [main] com.aji.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2019-07-22 19:14:33.815  INFO 7140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8726 (http)
+2019-07-22 19:14:33.830  INFO 7140 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-07-22 19:14:33.831  INFO 7140 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-07-22 19:14:34.758  INFO 7140 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-07-22 19:14:34.758  INFO 7140 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1611 ms
+2019-07-22 19:14:35.014  INFO 7140 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-07-22 19:14:35.093  INFO 7140 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-07-22 19:14:35.234  INFO 7140 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8726 (http) with context path ''
+2019-07-22 19:14:35.236  INFO 7140 --- [main] com.aji.community.CommunityApplication   : Started CommunityApplication in 2.71 seconds (JVM running for 7.557)
