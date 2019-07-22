@@ -36,7 +36,11 @@ public class replyController {
 
         reply r = new reply();
         r.setPostID(rDTO.getPostId());
-        r.setUserID(u.getUserID());
+        if(u == null){
+            r.setUserID("0");
+        }else{
+            r.setUserID(u.getUserID());
+        }
         r.setGmt_create(System.currentTimeMillis());
         r.setNum_upvote(0);
         r.setNum_downvote(0);

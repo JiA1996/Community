@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ public class IndexController {
     private postService postService;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @RequestParam(name = "search", required = false) String search){
 
-        List<postDTO> posts = postService.getPostList();
+        List<postDTO> posts = postService.getPostList(search);
 
         model.addAttribute("posts", posts);
 

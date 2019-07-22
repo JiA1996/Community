@@ -40,7 +40,6 @@ public class replyService {
 
     public void insertReply(reply r) {
 
-
             post p = pMapper.getPostByID(r.getPostID());
             p.setNum_view(0);
             rMapper.insertReply(r);

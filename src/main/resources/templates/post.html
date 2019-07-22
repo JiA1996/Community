@@ -73,10 +73,10 @@
                         <div class="media-left">
                             <a href="#">
                                 <img class="media-object img-rounded"
-                                     th:src="${reply.getUserObject().getAvatarUrl()}">
+                                     th:src="${reply.getUserObject() != null ? reply.getUserObject().getAvatarUrl() : '/images/defav.jpg'}">
                             </a>
                             <h5 class="media-heading">
-                                <span th:text=" ${reply.getUserObject().getUsername()}"></span>
+                                <span th:text="${reply.getUserObject() != null ? reply.getUserObject().getUsername() : 'unknown user'}"></span>
                             </h5>
                         </div>
                         <div class="media-body" th:id="${'comment-body-'+reply.getReplyID()}">

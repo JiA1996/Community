@@ -19,7 +19,7 @@ public interface postMapper {
     @Insert("INSERT INTO post(userID, username, title, body, gmt_create, gmt_lastmodified) VALUES(#{userID}, #{username}, #{title}, #{body}, #{gmt_create}, #{gmt_lastmodified})")
     void insertPost(post p);
 
-    @Select("SELECT * FROM post")
+    @Select("SELECT * FROM post ORDER BY gmt_create DESC")
     List<post> getAllPosts();
 
     @Select("SELECT * FROM post WHERE id = #{id}")
@@ -33,4 +33,7 @@ public interface postMapper {
 
     @Update("UPDATE POST SET title = #{title}, body = #{body} WHERE id = #{id}")
     void updatePost(post p);
+
+    @Select("SELECT * FROM post WHERE title REGEXP #{search} ORDER BY gmt_create DESC;")
+    List<post> getAllPostsBySearch(@Param("search") String search);
 }

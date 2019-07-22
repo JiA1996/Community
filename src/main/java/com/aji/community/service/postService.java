@@ -5,12 +5,15 @@ import com.aji.community.mapper.postMapper;
 import com.aji.community.mapper.userMapper;
 import com.aji.community.model.post;
 import com.aji.community.model.user;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * \* Created with IntelliJ IDEA.
@@ -32,8 +35,18 @@ public class postService {
     private postMapper postMapper;
 
 
-    public List<postDTO> getPostList() {
-        List<post> posts = postMapper.getAllPosts();
+    public List<postDTO> getPostList(String search) {
+
+        List<post> posts;
+
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search = Arrays.stream(tags).collect(Collectors.joining("|"));
+            posts = postMapper.getAllPostsBySearch(search);
+        }else {
+            posts = postMapper.getAllPosts();
+        }
+
         List<postDTO> postDTOList = new ArrayList<>();
         for (post p : posts){
             user u = userMapper.getUserByID(p.getUserID());
